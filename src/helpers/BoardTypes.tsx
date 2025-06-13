@@ -11,13 +11,8 @@ export const CellState: Record<string, Cell> = {
 }
 
 // export const emptyFieldGenerator = (size: number, state: Cell = CellState.empty): Field => [[]]
-export const emptyFieldGenerator = (
-  size: number,
-  state: Cell = CellState.empty
-): Field => 
-  Array.from({ length: size }, () =>
-    Array.from({ length: size }, () => state)
-  )
+export const emptyFieldGenerator = (size: number, state: Cell = CellState.empty): Field => 
+  Array.from( { length: size }, () => Array.from({ length: size }, () => state) )
 
   /**
    * For each row, generate a new array of size elements.
@@ -29,6 +24,14 @@ export const emptyFieldGenerator = (
         [9, 9, 9]
      ]
    */
+
+export const fieldGenerator = (size: number, density: number): Field =>{
+    if(density < 0 || density > 1){
+        throw new Error("Density must be between 0 and 1")
+    }
+
+    return Array.from({length: size}, ()=> Array.from({length: size}, ()=> Math.random() < density ? 9 : 0))
+}
 
 
 // export const PossibleCombo: Field = [
