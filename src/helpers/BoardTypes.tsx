@@ -10,6 +10,27 @@ export const CellState: Record<string, Cell> = {
     weakMark: 12
 }
 
+// export const emptyFieldGenerator = (size: number, state: Cell = CellState.empty): Field => [[]]
+export const emptyFieldGenerator = (
+  size: number,
+  state: Cell = CellState.empty
+): Field => 
+  Array.from({ length: size }, () =>
+    Array.from({ length: size }, () => state)
+  )
+
+  /**
+   * For each row, generate a new array of size elements.
+     Each element is set to state.
+     emptyFieldGenerator(3, 9) // state = 9
+     [
+        [9, 9, 9],
+        [9, 9, 9],
+        [9, 9, 9]
+     ]
+   */
+
+
 // export const PossibleCombo: Field = [
 //     [9, 1, 0, 0, 0, 0, 1, 1, 1],
 //     [1, 1, 1, 1, 1, 0, 1, 9, 1],

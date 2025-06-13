@@ -8,4 +8,7 @@ export default {
   transform: {
     ...tsJestTransformCfg,
   },
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  coverageReporters: ['text', 'lcov', 'text-summary'],
 };
