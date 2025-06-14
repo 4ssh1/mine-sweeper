@@ -25,12 +25,31 @@ export const emptyFieldGenerator = (size: number, state: Cell = CellState.empty)
      ]
    */
 
-export const fieldGenerator = (size: number, density: number): Field =>{
-    if(density < 0 || density > 1){
+export const fieldGenerator = (size: number, probability: number): Field =>{
+    if(probability < 0 || probability > 1){
         throw new Error("Density must be between 0 and 1")
     }
 
-    return Array.from({length: size}, ()=> Array.from({length: size}, ()=> Math.random() < density ? 9 : 0))
+    let noBombCell = size * size
+    let bombCells = noBombCell * probability
+
+    const result: Field = emptyFieldGenerator(size)
+
+    for(let i = 0; i < size; i++){
+      for(let j = 0; j < size; j++){
+        if(bombCells === 0){
+          return result
+        }
+        if(bombCells > 0){
+          result[i][j] = CellState.bomb;
+          bombCells--
+        }
+        noBombCell--
+      }
+    }
+
+    return  result
+    // return Array.from({length: size}, ()=> Array.from({length: size}, ()=> Math.random() < density ? 9 : 0))
 }
 
 

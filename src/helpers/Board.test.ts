@@ -31,6 +31,23 @@ describe('Field Generator', ()=>{
         it("smallest possible field with mine", ()=>{
             expect(fieldGenerator(1,1)).toStrictEqual([[bomb]])
         })
+        it("2  X 2 with mine", ()=>{
+            expect(fieldGenerator(2,1)).toStrictEqual([
+                [bomb, bomb],
+                [bomb, bomb]
+            ])
+        })
+        it("2  X 2 with 50% probability of having a mine", ()=>{
+            // expect(fieldGenerator(2,0.5))
+            // .toStrictEqual([
+            //     [bomb, bomb],
+            //     [empty, empty]
+            // ])
+            const field = fieldGenerator(2, 0.5)
+            const flatField = field.flat()
+            console.table(field)
+            console.table(flatField)
+        })
     })
 })
 
