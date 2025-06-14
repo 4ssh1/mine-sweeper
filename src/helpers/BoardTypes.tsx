@@ -27,7 +27,7 @@ export const emptyFieldGenerator = (size: number, state: Cell = CellState.empty)
 
 export const fieldGenerator = (size: number, probability: number): Field =>{
     if(probability < 0 || probability > 1){
-        throw new Error("Density must be between 0 and 1")
+        throw new Error("Probability must be between 0 and 1")
     }
 
     let noBombCell = size * size
@@ -49,9 +49,9 @@ export const fieldGenerator = (size: number, probability: number): Field =>{
     }
 
     return  result
-    // return Array.from({length: size}, ()=> Array.from({length: size}, ()=> Math.random() < density ? 9 : 0))
-}
-
+  }
+  
+  // return Array.from({length: size}, ()=> Array.from({length: size}, ()=> Math.random() < density ? 9 : 0))
 
 // export const PossibleCombo: Field = [
 //     [9, 1, 0, 0, 0, 0, 1, 1, 1],
