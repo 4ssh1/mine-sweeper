@@ -40,7 +40,7 @@ export const fieldGenerator = (size: number, probability: number): Field =>{
         if(bombCells === 0){
           return result
         }
-        if(bombCells > 0){
+        if(bombCells / noBombCell > Math.random()){
           result[i][j] = CellState.bomb;
           bombCells--
         }
