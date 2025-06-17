@@ -1,4 +1,4 @@
-import { emptyFieldGenerator, CellState, fieldGenerator } from "./BoardTypes";
+import { emptyFieldGenerator, CellState, fieldGenerator } from "../helpers/BoardTypes";
 
 const {empty, bomb, hidden} = CellState
 

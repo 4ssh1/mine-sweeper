@@ -11,9 +11,15 @@ function App() {
 export default App
 
 
+
+// type Name ={
+//   name: string
+// }& number
+
 // function addNumbers<T extends number>(a:T, b: T): number{
 //   return a + b + result
 // }
+// addNumber<Name>
 
 // addNumbers(1, 2)
 
@@ -27,15 +33,15 @@ export default App
 //   return value 
 // }
 
-// let result = showType(12)
-// showType("asscdd")
+// const result = showType<number>(12)
+// showType<string>("asscdd")
 
 // type MathFun<T = number> = (a: T, b: T) => T
 
 // // the parameters are any if arrow functions are used
-// const addNumber: MathFun<number>= function(a, b) {
-//  return a + b
-// } 
+// // const addNumber: MathFun<number>= function(a, b) {
+// //  return a + b
+// // } 
 // const add: MathFun<string> = (a: string, b: string): string => a + b;
 
 // console.log(addNumber, add)
