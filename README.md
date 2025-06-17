@@ -61,7 +61,7 @@ yarn dev
 ## Project Structure
 
 coverage
-├── lcov-report
+├── lcov-report 
 ├── lcov.info
 eslint.config.js
 index.html
