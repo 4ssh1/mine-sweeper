@@ -48,7 +48,7 @@ export const fieldGenerator = (size: number, probability: number): Field =>{
       }
     }
 
-    return  result
+    return result
   }
   
   // return Array.from({length: size}, ()=> Array.from({length: size}, ()=> Math.random() < density ? 9 : 0))
