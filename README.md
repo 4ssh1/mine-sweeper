@@ -5,19 +5,6 @@ A classic Minesweeper game built with **React**, **TypeScript**, and **Redux** f
 
 ---
 
-## 📑 Table of Contents
-
-- [🎯 Features](#-features)
-- [🚀 Getting Started](#-getting-started)
-- [🏗️ Project Structure](#-project-structure)
-- [🧪 Testing](#-testing)
-- [🧠 Gameplay Logic](#-gameplay-logic)
-- [📦 Technologies Used](#-technologies-used)
-- [🔧 Contributing](#-contributing)
-- [📄 License](#-license)
-
----
-
 ## 🎯 Features
 
 - ⚛️ Built with React and TypeScript
@@ -60,17 +47,7 @@ yarn dev
 
 ## Project Structure
 
-coverage
-├── lcov-report 
-├── lcov.info
-eslint.config.js
-index.html
-jest.config.js
-package-lock.json
-package.json
-postcss.config.mjs
-public
-README.md
+```
 src
 ├── App.tsx
 ├── assets
@@ -84,10 +61,7 @@ src
 ├── test
 │   ├── Board.test.ts
 ├── vite-env.d.ts
-tsconfig.app.json
-tsconfig.json
-tsconfig.node.json
-vite.config.ts
+```
 
 
 # Run all test
@@ -103,13 +77,13 @@ yarn test
 - The board is generated with a size and density parameter.
 - Mines are placed randomly based on a probability check.
 
-# On reveal:
+### On reveal:
 If tile is a bomb → Game Over
 If not:
 Count adjacent mines
 If 0 → Recursively reveal surrounding tiles
 
-# Win condition:
+### Win condition:
 
 All non-bomb tiles are revealed
 Field generation uses basic probability math, not complex algorithms.
