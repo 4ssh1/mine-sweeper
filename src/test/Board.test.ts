@@ -53,7 +53,22 @@ describe('Field Generator', ()=>{
 
             expect(cellsWithBomb).toHaveLength(2)
             expect(emptyCells).toHaveLength(2)
+            
+        })
+        it("10 x 10 with 1/4 mines cells - 25 mines", ()=>{
+            const size = 10
+            const mines = 25
+            const probability = mines / (size * size)
+            const field = fieldGenerator(size, probability)
+            
+            console.table(field)
+            const flatField = field.flat()
+            const cellsWithBomb = flatField.filter(cell=> cell === bomb)
 
+
+            expect(cellsWithBomb).toHaveLength(25)
+
+ 
         })
     })
 })
