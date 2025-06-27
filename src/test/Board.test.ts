@@ -49,7 +49,7 @@ describe('Field Generator', ()=>{
             console.table(flatField)
 
             const cellsWithBomb = flatField.filter(cell=> cell === bomb)
-            const emptyCells = flatField.filter(cell=> cell === empty)
+            const emptyCells = flatField.filter(cell=> cell === 2)
 
             expect(cellsWithBomb).toHaveLength(2)
             expect(emptyCells).toHaveLength(2)
