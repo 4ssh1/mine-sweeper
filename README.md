@@ -53,6 +53,7 @@ src
 ├── assets
 ├── helpers
 │   ├── BoardTypes.tsx
+|   ├──CellManipulation.tsx
 ├── index.css
 ├── jest.setup.ts
 ├── main.tsx
@@ -60,6 +61,7 @@ src
 │   ├── fileMock.js
 ├── test
 │   ├── Board.test.ts
+│   ├── CellManipulation.test.ts
 ├── vite-env.d.ts
 ```
 
