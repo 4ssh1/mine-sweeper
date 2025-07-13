@@ -1,0 +1,41 @@
+
+function RedBox({content}:{content: string | number}){
+  return(
+    <div className="h-8 w-14 bg-black border-[2.4px] border-red-500 flex items-center justify-center">
+        <span className="text-red-500 text-[15px] font-bold">{content}</span>   
+    </div>
+  )
+}
+
+function SelectBox(){
+  const options = ["begineer", "intermediate", "expert"]
+  return(
+    <div className="border-[1px] rounded-xl flex justify-center items-center px-1">
+      <select name="" id="" className="outline-none">
+        {options.map(option=>(
+          <option value={option}>{option}</option>
+        ))}
+      </select>
+    </div>
+  )
+}
+
+function Info() {
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <div>
+        <div className="pb-5">
+          <h2 className="font-bold text-2xl pb-2 text-center">minesweeper</h2>
+          <p className="font-semibold text-center">flag: <span className="text-red-500">alt</span> + <span className="text-purple-500">Click</span> </p>
+        </div>
+        <div className="flex gap-4">
+          <RedBox content={1200}/>
+          <SelectBox />
+          <RedBox content={56}/>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Info

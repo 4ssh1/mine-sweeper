@@ -1,12 +1,21 @@
-interface ButtonProps {
-  children: React.ReactNode;
-  variant?: "primary" | "secondary";
+export type ButtonProps = {
+  label: string;
+  variant: 'primary' | 'secondary';
+  disabled: boolean;
+  onClick: () => void;
 }
 
-export const Button = ({ children, variant = "primary" }: ButtonProps) => {
-  const base = "px-4 py-2 rounded text-white font-semibold"
-  const styles =
-    variant === "primary" ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-500 hover:bg-gray-600"
+const Button = ({ label, variant, disabled, onClick }: ButtonProps) => {
+  const baseStyle = 'px-4 py-2 rounded text-white'
+  const variantStyle =
+    variant === 'primary' ? 'bg-blue-500' : 'bg-gray-500'
+  const finalStyle = `${baseStyle} ${variantStyle} ${disabled ? 'opacity-50' : ''}`
 
-  return <button className={`${base} ${styles}`}>{children}</button>
+  return (
+    <button className={finalStyle} disabled={disabled} onClick={onClick}>
+      {label}
+    </button>
+  )
 }
+
+export default Button;
