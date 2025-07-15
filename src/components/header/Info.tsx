@@ -10,15 +10,18 @@ function RedBox({content}:{content: string | number}){
 function SelectBox(){
   const options = ["begineer", "intermediate", "expert"]
   return(
-    <div className="border-[1px] rounded-xl flex justify-center items-center px-1">
-      <select name="" id="" className="outline-none">
+    <div className="border-[1px] rounded-xl flex justify-center items-center px-2">
+      <select name="" id="" className="outline-none font-semibold  bg-white">
         {options.map(option=>(
-          <option value={option}>{option}</option>
+          <div className="rounded-2xl">
+            <option value={option} >{option}</option>
+          </div>
         ))}
       </select>
     </div>
   )
 }
+
 
 function Info() {
   return (
@@ -31,6 +34,7 @@ function Info() {
         <div className="flex gap-4">
           <RedBox content={1200}/>
           <SelectBox />
+          <button className="border-[1px] rounded-xl py-1 px-2 hover:opacity-80 ease-out" type="button">Reset</button>
           <RedBox content={56}/>
         </div>
       </div>
