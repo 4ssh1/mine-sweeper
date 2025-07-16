@@ -1,3 +1,4 @@
+import { useState } from "react"
 
 function RedBox({content}:{content: string | number}){
   return(
@@ -23,18 +24,30 @@ function SelectBox(){
 }
 
 
+
 function Info() {
+  const [isReset, setReset] = useState<boolean>(false)
+
+  function reset(){
+    setReset(true)
+    setTimeout(()=>{
+      setReset(false)
+    }, 900)
+  }
   return (
     <div className="flex justify-center items-center h-screen">
       <div>
         <div className="pb-5">
           <h2 className="font-bold text-2xl pb-2 text-center">minesweeper</h2>
-          <p className="font-semibold text-center">flag: <span className="text-red-500">alt</span> + <span className="text-purple-500">Click</span> </p>
+          <p className="font-semibold text-center">flag: <span className="text-red-500">alt</span> + 
+          <span className="text-purple-500"> click</span> </p>
         </div>
         <div className="flex gap-4">
           <RedBox content={1200}/>
           <SelectBox />
-          <button className="border-[1px] rounded-xl py-1 px-2 hover:opacity-80 ease-out" type="button">Reset</button>
+          <button className="border-[1px] rounded-xl py-1 px-2 hover:opacity-80 ease-out" type="button">
+            Reset <span onClick={reset}> {isReset ? "😮" : "😁"}</span>
+          </button>
           <RedBox content={56}/>
         </div>
       </div>
