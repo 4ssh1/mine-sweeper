@@ -1,6 +1,7 @@
 import  ClosedCell from "./components/header/grid/ClosedCell"
 import EmptyCell from "./components/header/grid/EmptyCell"
 import Info from "./components/header/Info"
+import { Bomb, BombFrame, Flag, TransparentFlag } from "./helpers/Board"
 
 function App() {
 
@@ -9,8 +10,16 @@ function App() {
       <div className="flex h-screen justify-center items-center">
         <div>
           <Info />
-          <ClosedCell />
+          <ClosedCell>
+            <Flag />
+          </ClosedCell>
+          <ClosedCell>
+            <TransparentFlag />
+          </ClosedCell>
           <EmptyCell />
+          <BombFrame >
+            <Bomb />
+          </BombFrame>
         </div>
       </div>
     </>

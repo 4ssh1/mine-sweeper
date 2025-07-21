@@ -53,6 +53,31 @@ export const fieldGenerator = (size: number, probability: number): FieldType =>{
 
     return result
   }
+
+
+export const BombFrame = ({children}: {children: React.ReactNode})=>{
+  return(
+    <div className="bg-red-600 flex justify-center items-center size-[2vw]">{children}</div>
+  )
+}
+
+export const Bomb = ()=>{
+  return (
+    <div className="rounded-full size-[1.3vw] bg-[#333] flex items-center justify-center "></div>
+  )
+}
+
+export const Flag = ()=>{
+  return (
+    <div className="size-0 border-t-[0.5vw] border-t-transparent border-b-[0.5vw] border-b-transparent
+    border-l-[0.5vw] border-l-red-600"></div>
+  )
+}
+
+export const TransparentFlag = ()=>(
+  <div className="size-0 border-t-[0.5vw] border-t-transparent border-b-[0.5vw] border-b-transparent
+    border-l-[0.5vw] border-l-[#f6aba8de]"></div>
+)
   
   // return Array.from({length: size}, ()=> Array.from({length: size}, ()=> Math.random() < density ? 9 : 0))
 

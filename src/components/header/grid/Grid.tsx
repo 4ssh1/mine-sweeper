@@ -1,13 +1,17 @@
 import type { CellType } from "../../../helpers/Board";
 import ClosedCell from "./ClosedCell";
 import EmptyCell from "./EmptyCell";
+import { Bomb, BombFrame, CellState } from "../../../helpers/Board";
 
 function Grid({ children }: { children: CellType }) {
   switch (children) {
-    case 0:
+    case CellState.empty :
         return <EmptyCell />
-    case 10:
+    case CellState.hidden:
       return <ClosedCell />;
+    case CellState.bomb:
+        return <BombFrame><Bomb /></BombFrame>
+    
     default:
       return <ClosedCell />;
   }
