@@ -1,4 +1,4 @@
-import { CellState, type Field } from "../helpers/Board";
+import { CellState, type FieldType } from "../helpers/Board";
 import { getNeighbours, incrementNeighbours, isIteminField } from "../helpers/CellManipulation";
 
 const {empty, bomb} = CellState
@@ -28,7 +28,7 @@ describe('Check increment neighbours', ()=>{
         })
     })
     describe("3 x 3 cases", ()=>{
-        const field: Field = [
+        const field: FieldType = [
             [empty, empty, empty],
             [empty, bomb, empty],
             [empty, empty, empty]
@@ -122,7 +122,7 @@ describe("check if item is in field", ()=>{
     })
 
     describe("a 5 x 5 matrix example", ()=>{
-        const field: Field = [
+        const field: FieldType = [
             [empty, empty, empty, empty, empty],
             [empty, empty, empty, empty, empty],
             [empty, empty, empty, empty, empty],
