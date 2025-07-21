@@ -11,12 +11,10 @@ function RedBox({content}:{content: string | number}){
 function SelectBox(){
   const options = ["begineer", "intermediate", "expert"]
   return(
-    <div className="border-[1px] rounded-xl flex justify-center items-center px-2">
-      <select name="" id="" className="outline-none font-semibold  bg-white">
+    <div className="border-[1px] rounded-full text-center py-1 px-2">
+      <select name="" id="" className="outline-none border-0">
         {options.map(option=>(
-          <div className="rounded-2xl">
-            <option value={option} >{option}</option>
-          </div>
+          <option value={option}>{option}</option>
         ))}
       </select>
     </div>
