@@ -1,7 +1,7 @@
 import  ClosedCell from "./components/header/grid/ClosedCell"
 import EmptyCell from "./components/header/grid/EmptyCell"
 import Info from "./components/header/Info"
-import { Bomb, BombFrame, Flag, TransparentFlag } from "./helpers/Board"
+import { Bomb, BombFrame, Flag } from "./helpers/Board"
 
 function App() {
 
@@ -12,9 +12,6 @@ function App() {
           <Info />
           <ClosedCell>
             <Flag />
-          </ClosedCell>
-          <ClosedCell>
-            <TransparentFlag />
           </ClosedCell>
           <EmptyCell />
           <BombFrame >
