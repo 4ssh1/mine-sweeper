@@ -1,3 +1,4 @@
+import type { Props } from "../components/header/grid/ClosedCell"
 import { incrementNeighbours } from "./CellManipulation"
 
 export type CellType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
@@ -55,7 +56,7 @@ export const fieldGenerator = (size: number, probability: number): FieldType =>{
   }
 
 
-export const BombFrame = ({children}: {children: React.ReactNode})=>{
+export const BombFrame = ({children}: Props & {children: React.ReactNode})=>{
   return(
     <div className="bg-red-600 flex justify-center items-center size-[2vw]">{children}</div>
   )
