@@ -17,17 +17,6 @@ export const CellState: Record<string, CellType> = {
 export const emptyFieldGenerator = (size: number, state: CellType = CellState.empty): FieldType => 
   Array.from( { length: size }, () => Array.from({ length: size }, () => state) )
 
-  /**
-   * For each row, generate a new array of size elements.
-     Each element is set to state.
-     emptyFieldGenerator(3, 9) // state = 9
-     [
-        [9, 9, 9],
-        [9, 9, 9],
-        [9, 9, 9]
-     ]
-   */
-
 export const fieldGenerator = (size: number, probability: number): FieldType =>{
     if(probability < 0 || probability > 1){
         throw new Error("Probability must be between 0 and 1")
@@ -80,16 +69,7 @@ export const TransparentFlag = ()=>(
     border-l-[0.5vw] border-l-[#f6aba8de]"></div>
 )
   
-  // return Array.from({length: size}, ()=> Array.from({length: size}, ()=> Math.random() < density ? 9 : 0))
+export const isActiveCell = (cell:CellType): boolean =>
+  [CellState.hidden, CellState.mark, CellState.weakMark].includes(cell);
 
-// export const PossibleCombo: Field = [
-//     [9, 1, 0, 0, 0, 0, 1, 1, 1],
-//     [1, 1, 1, 1, 1, 0, 1, 9, 1],
-//     [0, 0, 1, 9, 1, 0, 2, 2, 2],
-//     [0, 0, 1, 1, 1, 0, 1, 9, 1],
-//     [0, 1, 1, 1, 1, 9, 1, 1, 1],
-//     [0, 1, 9, 2, 1, 2, 2, 3, 2],
-//     [0, 1, 1, 2, 9, 2, 9, 9, 9],
-//     [0, 0, 0, 1, 1, 4, 9, 8, 9],
-//     [0, 0, 0, 0, 0, 1, 9, 9, 9],
-// ]
+
