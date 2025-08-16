@@ -1,4 +1,4 @@
-import { Bomb, BombFrame, CellState, Flag, TransparentFlag, type CellType, type CoordType } from "../helpers/Board"
+import { Bomb, BombFrame, CellState, Flag, isActiveCell, TransparentFlag, type CellType, type CoordType } from "../helpers/Board"
 import ClosedCell, { type Props } from "./header/grid/ClosedCell"
 import EmptyCell from "./header/grid/EmptyCell"
 
@@ -7,15 +7,12 @@ export interface CellProps {
     children: CellType;
     coords: CoordType;
     onClick: (coords: CoordType)=> void;
-    onContextMenu: (coords: CoordType)=> void
+    onContextMenu: (coords: CoordType)=> void;
+    'data-testid'?: string
 }
 
 function Cell({children, coords, ...rest}: CellProps & Props) {
-    const activeCells = [
-        CellState.hidden,
-        CellState.weakMark,
-        CellState.mark
-    ].includes(children)
+    const activeCells = isActiveCell(children)
 
     const onClick= ()=> {
         if(activeCells){
@@ -33,7 +30,8 @@ function Cell({children, coords, ...rest}: CellProps & Props) {
 
     const props = {
         onClick,
-        onContextMenu   
+        onContextMenu,
+        'data-testid': `${children}_${coords}`
     }
 
     switch (children){
