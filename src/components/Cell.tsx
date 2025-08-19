@@ -4,7 +4,7 @@ import EmptyCell from "./header/grid/EmptyCell"
 
 
 export interface CellProps {
-    children: CellType;
+    children?: CellType;
     coords: CoordType;
     onClick: (coords: CoordType)=> void;
     onContextMenu: (coords: CoordType)=> void;
@@ -12,7 +12,7 @@ export interface CellProps {
 }
 
 function Cell({children, coords, ...rest}: CellProps & Props) {
-    const activeCells = isActiveCell(children)
+    const activeCells = isActiveCell(children as CellType)
 
     const onClick= ()=> {
         if(activeCells){

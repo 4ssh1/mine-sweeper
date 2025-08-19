@@ -1,28 +1,35 @@
-import { render, screen } from '@testing-library/react'
+/**
+ * @jest-environment jsdom
+ */
+
+import { fireEvent, render, screen } from '@testing-library/react'
 import Cell from '../components/Cell'
 import { CellState, type CoordType } from '../helpers/Board'
-// import {isActiveCell}  from '../helpers/Board'
 
-describe('Cell component check', ()=>{
+describe('Cell component check', () => {
+  const coords: CoordType = [1, 1]
 
-    const coords: CoordType = [1, 1]
+  const cellStates = [
+    CellState.empty,
+    CellState.bomb,
+    CellState.hidden,
+    CellState.mark,
+    CellState.weakMark,
+  ]
 
-    for(let cell = CellState.empty; cell <= CellState.weakMark; cell++){
-        it('Check prevent default contextMenu for every cell type', ()=>{
-            const props = {
-                children: cell,
-                coords,
-                onClick: jest.fn(),
-                onContextMenu: jest.fn(),
+  cellStates.forEach((cell) => {
+    it(`Check prevent default contextMenu for cell type ${CellState[cell]}`, () => {
+      const props = {
+        coords,
+        children: cell,
+        onClick: jest.fn(),
+        onContextMenu: jest.fn(),
+      }
+      render(<Cell {...props} />)
 
-            };
-            render(<Cell {...props} />);
-
-            const cellComp = screen.getAllByTestId(`${cell}_${coords}`);
-        });
-        it('onClick and onContextMenu handler should be called for active cells', ()=>{
-        })
-    }
-
+      const cellComp = screen.getByTestId(`${cell}_${coords}`)
+      const isPrevented = fireEvent.contextMenu(cellComp)
+      expect(isPrevented).toBe(false)
+    })
+  })
 })
-
