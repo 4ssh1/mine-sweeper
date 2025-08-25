@@ -1,7 +1,7 @@
 export type ButtonProps = {
   label: string;
-  variant: 'primary' | 'secondary';
-  disabled: boolean;
+  variant?: 'primary' | 'secondary';
+  disabled?: boolean;
   onClick: () => void;
 }
 

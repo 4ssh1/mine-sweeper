@@ -1,4 +1,4 @@
-import { useState } from "react"
+import useMouseDown from "../../hooks/useMouseDown"
 
 function RedBox({content}:{content: string | number}){
   return(
@@ -21,17 +21,23 @@ function SelectBox(){
   )
 }
 
+function Reset(){
+  const [mouseDown, onMouseDown, onMouseUp] = useMouseDown()
 
+  return (
+    <button onMouseDown={onMouseDown} onMouseUp={onMouseUp} onClick={onReset}
+    className="border-[1px] rounded-xl py-1 px-2 hover:opacity-80 ease-out" type="button">
+      Reset { mouseDown ? " 😮" : " 😁"}
+    </button>
+  )
+
+}
+
+const onReset = ()=>{
+  
+}
 
 function Info() {
-  const [isReset, setReset] = useState<boolean>(false)
-
-  function reset(){
-    setReset(true)
-    setTimeout(()=>{
-      setReset(false)
-    }, 900)
-  }
   return (
       <div>
         <div className="pb-5">
@@ -42,9 +48,7 @@ function Info() {
         <div className="flex gap-2">
           <RedBox content={1200}/>
           <SelectBox />
-          <button className="border-[1px] rounded-xl py-1 px-2 hover:opacity-80 ease-out" type="button">
-            Reset <span onClick={reset}> {isReset ? "😮" : "😁"}</span>
-          </button>
+          <Reset />
           <RedBox content={56}/>
         </div>
       </div>
