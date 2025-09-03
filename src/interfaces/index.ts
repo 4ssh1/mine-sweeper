@@ -35,7 +35,7 @@ export type ButtonProps = {
 export interface EmptyCellProps extends Props {
   children?: CellType;
   onClick?: () => void;
-  onContextMenu?: (e: React.MouseEvent<HTMLElement>) => void;
+  onContextMenu: React.MouseEventHandler<HTMLElement>;
   'data-testid'?: string;
-  mousedown: boolean;
+  mousedown?: boolean;
 }

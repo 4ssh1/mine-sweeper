@@ -5,35 +5,22 @@ import EmptyCell from "./header/grid/EmptyCell"
 import type { CellType, CellProps, Props } from "../interfaces";
 
 function Cell({children, coords, ...rest}: CellProps & Props) {
-    const [mousedown, handleMouseDown, handleMouseUp] = useMouseDown()
-    const activeCells = isActiveCell(children as CellType)
-
-    const onClick= ()=> {
-        if(activeCells){
-            rest?.onClick(coords)
-        }
+    const [mousedown, onMouseDown, onMouseUp] = useMouseDown()
+    const nonActive = {
+        onContextMenu: rest.onContextMenu,
+        'data-testid': rest['data-testid']
     }
+
+    const onClick = ()=> rest.onClick(coords)
     
     const onContextMenu = (elem: React.MouseEvent<HTMLElement>) =>{
         elem.preventDefault()
         
-        if(activeCells){
+        if(isActiveCell(children as CellType)){
             rest.onContextMenu(coords)
         }
     }
 
-    const onMouseUp = ()=>{
-        if(activeCells){
-            handleMouseUp()
-        }
-    }
-
-    const onMouseDown = ()=> {
-        if(activeCells){
-            handleMouseDown()
-        }
-    }
-    
     const props = {
         onClick,
         onContextMenu,
@@ -46,10 +33,10 @@ function Cell({children, coords, ...rest}: CellProps & Props) {
 
     switch (children){
         case CellState.empty:
-            return <EmptyCell {...props}/>
+            return <EmptyCell {...nonActive}/>
         case CellState.bomb:
             return ( 
-            <BombFrame {...props}>
+            <BombFrame {...nonActive}>
                 <Bomb />
             </BombFrame>
             )
@@ -68,7 +55,7 @@ function Cell({children, coords, ...rest}: CellProps & Props) {
                 </ClosedCell>
             )
         default:
-            return <EmptyCell {...props}>
+            return <EmptyCell {...nonActive}>
                 {children}
             </EmptyCell>
 

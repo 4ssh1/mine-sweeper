@@ -13,8 +13,8 @@ function SelectBox(){
   return(
     <div className="border-[1px] rounded-lg text-center py-1 px-2">
       <select name="" id="" className="outline-none border-0">
-        {options.map(option=>(
-          <option value={option}>{option}</option>
+        {options.map((option, i)=>(
+          <option value={option} key={i}>{option}</option>
         ))}
       </select>
     </div>
