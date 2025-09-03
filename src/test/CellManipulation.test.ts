@@ -1,5 +1,6 @@
-import { CellState, type FieldType } from "../helpers/Board";
+import { CellState} from "../helpers/Board";
 import { getNeighbours, incrementNeighbours, isIteminField } from "../helpers/CellManipulation";
+import type { FieldType } from "../interfaces";
 
 const {empty, bomb} = CellState
 

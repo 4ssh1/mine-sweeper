@@ -1,9 +1,4 @@
-export type ButtonProps = {
-  label: string;
-  variant?: 'primary' | 'secondary';
-  disabled?: boolean;
-  onClick: () => void;
-}
+import type { ButtonProps } from "../interfaces"
 
 const Button = ({ label, variant, disabled, onClick }: ButtonProps) => {
   const baseStyle = 'px-4 py-2 rounded text-white'

@@ -1,4 +1,4 @@
-export type Props = React.HTMLAttributes<HTMLDivElement>;
+import type { Props } from "../../../interfaces"
 
 function ClosedCell({children, ...rest}: Props) {
   return (

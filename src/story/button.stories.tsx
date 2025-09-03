@@ -1,5 +1,5 @@
 import Button from "../components/Button";
-import type { ButtonProps } from "../components/Button";
+import type { ButtonProps } from "../interfaces";
 
 export const Playground = (args: ButtonProps) => <Button {...args} />;
 

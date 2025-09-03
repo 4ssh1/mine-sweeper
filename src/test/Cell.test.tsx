@@ -4,7 +4,8 @@
 
 import { fireEvent, render, screen } from '@testing-library/react'
 import Cell from '../components/Cell'
-import { CellState,type CellType, type CoordType } from '../helpers/Board'
+import { CellState } from '../helpers/Board'
+import type { CellType, CoordType } from '../interfaces'
 
 describe('Cell component check', () => {
   const coords: CoordType = [1, 1]
@@ -22,6 +23,9 @@ describe('Cell component check', () => {
         children: cell,
         onClick: jest.fn(),
         onContextMenu: jest.fn(),
+        mousedown: false,
+        handleMouseDown: jest.fn(),
+        handleMouseUp: jest.fn(),
       }
       render(<Cell {...props} />)
 
@@ -41,6 +45,9 @@ test("Check prevent default contextMenu for cell type undefined", () => {
     children: cell,
     onClick: jest.fn(),
     onContextMenu: jest.fn(),
+    mousedown: false,
+    handleMouseDown: jest.fn(),
+    handleMouseUp: jest.fn(),
   };
   render(<Cell {...props} />);
   const cellComp = screen.getByTestId(`${cell}_${coords}`); // Fails here

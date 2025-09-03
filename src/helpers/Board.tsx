@@ -1,9 +1,5 @@
-import type { Props } from "../components/header/grid/ClosedCell"
 import { incrementNeighbours } from "./CellManipulation"
-
-export type CellType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-export type FieldType = CellType [][] 
-export type CoordType = [number, number]
+import type { CellType, FieldType, Props } from "../interfaces"
 
 export const CellState: Record<string, CellType> = {
     empty: 0,

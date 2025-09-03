@@ -1,17 +1,11 @@
-import { Bomb, BombFrame, CellState, Flag, isActiveCell, TransparentFlag, type CellType, type CoordType } from "../helpers/Board"
-import ClosedCell, { type Props } from "./header/grid/ClosedCell"
+import { Bomb, BombFrame, CellState, Flag, isActiveCell, TransparentFlag } from "../helpers/Board"
+import useMouseDown from "../hooks/useMouseDown";
+import ClosedCell from "./header/grid/ClosedCell"
 import EmptyCell from "./header/grid/EmptyCell"
-
-
-export interface CellProps {
-    children?: CellType;
-    coords: CoordType;
-    onClick: (coords: CoordType)=> void;
-    onContextMenu: (coords: CoordType)=> void;
-    'data-testid'?: string
-}
+import type { CellType, CellProps, Props } from "../interfaces";
 
 function Cell({children, coords, ...rest}: CellProps & Props) {
+    const [mousedown, handleMouseDown, handleMouseUp] = useMouseDown()
     const activeCells = isActiveCell(children as CellType)
 
     const onClick= ()=> {
@@ -19,18 +13,34 @@ function Cell({children, coords, ...rest}: CellProps & Props) {
             rest?.onClick(coords)
         }
     }
-
+    
     const onContextMenu = (elem: React.MouseEvent<HTMLElement>) =>{
         elem.preventDefault()
-
+        
         if(activeCells){
             rest.onContextMenu(coords)
         }
     }
 
+    const onMouseUp = ()=>{
+        if(activeCells){
+            handleMouseUp()
+        }
+    }
+
+    const onMouseDown = ()=> {
+        if(activeCells){
+            handleMouseDown()
+        }
+    }
+    
     const props = {
         onClick,
         onContextMenu,
+        onMouseDown,
+        onMouseUp,
+        onMouseLeave: onMouseUp,
+        mousedown,
         'data-testid': `${children}_${coords}`
     }
 

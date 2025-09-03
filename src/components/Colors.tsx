@@ -1,4 +1,4 @@
-import type { CellType } from "../helpers/Board"
+import type { CellType } from "../interfaces"
 
 const transparent = 'rgba(0,0,0,0)'
 

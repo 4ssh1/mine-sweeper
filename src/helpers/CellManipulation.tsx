@@ -1,4 +1,4 @@
-import type { FieldType, CoordType, CellType } from "./Board";
+import type { FieldType, CoordType, CellType } from "../interfaces";
 
 export const getNeighbours = ([y, x]: CoordType) : Record<string, [number, number]>=>(
     {
