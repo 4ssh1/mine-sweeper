@@ -1,5 +1,5 @@
 import { incrementNeighbours } from "./CellManipulation"
-import type { CellType, FieldType, Props } from "../interfaces"
+import type { CellType, FieldType, BombFrameProps } from "../interfaces"
 
 export const CellState: Record<string, CellType> = {
     empty: 0,
@@ -40,12 +40,19 @@ export const fieldGenerator = (size: number, probability: number): FieldType =>{
     return result
   }
 
-
-export const BombFrame = ({children}: Props & {children: React.ReactNode})=>{
-  return(
-    <div className="bg-red-600 flex justify-center items-center size-[2vw]">{children}</div>
-  )
+function BombFrame({ children, onContextMenu, "data-testid": testId }: BombFrameProps) {
+  return (
+    <div
+      className="flex items-center justify-center w-8 h-8 bg-[#d2d0d0] border-2 border-gray-400"
+      onContextMenu={onContextMenu}
+      data-testid={testId}
+    >
+      {children}
+    </div>
+  );
 }
+
+export default BombFrame;
 
 export const Bomb = ()=>{
   return (

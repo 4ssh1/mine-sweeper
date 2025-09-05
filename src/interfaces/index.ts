@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export type MouseDown = ()=> void;
 export type MouseUp = ()=> void;
 
@@ -13,16 +15,12 @@ export type FieldType = CellType [][];
 export type CoordType = [number, number];
 export type Props = React.HTMLAttributes<HTMLDivElement>;
 
-
 export interface CellProps {
     children?: CellType;
     coords: CoordType;
     onClick: (coords: CoordType)=> void;
     onContextMenu: (coords: CoordType)=> void;
     'data-testid'?: string;
-    mousedown: boolean; 
-    handleMouseDown: ()=> void;
-    handleMouseUp: ()=> void;
 }
 
 export type ButtonProps = {
@@ -32,10 +30,20 @@ export type ButtonProps = {
   onClick: () => void;
 }
 
-export interface EmptyCellProps extends Props {
+export interface EmptyCellProps {
   children?: CellType;
   onClick?: () => void;
   onContextMenu: React.MouseEventHandler<HTMLElement>;
-  'data-testid'?: string;
+  "data-testid"?: string;
   mousedown?: boolean;
+}
+
+export interface GridProps {
+  children: FieldType;
+  onClick: (coords: CoordType) => void;
+  onContextMenu: (coords: CoordType) => void;
+}
+
+export interface BombFrameProps extends Pick<EmptyCellProps, "onContextMenu" | "data-testid"> {
+  children: ReactNode;
 }
