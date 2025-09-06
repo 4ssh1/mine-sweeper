@@ -43,7 +43,7 @@ export const fieldGenerator = (size: number, probability: number): FieldType =>{
 function BombFrame({ children, onContextMenu, "data-testid": testId }: BombFrameProps) {
   return (
     <div
-      className="flex items-center justify-center w-8 h-8 bg-[#d2d0d0] border-2 border-gray-400"
+      className="flex items-center justify-center w-8 h-8 bg-[#ef1111] border-2 border-gray-400"
       onContextMenu={onContextMenu}
       data-testid={testId}
     >
@@ -62,14 +62,14 @@ export const Bomb = ()=>{
 
 export const Flag = ()=>{
   return (
-    <div className="size-0 border-t-[0.5vw] border-t-transparent border-b-[0.5vw] border-b-transparent
-    border-l-[0.5vw] border-l-red-600"></div>
+    <div className="size-0 border-t-[0.8vw] border-t-transparent border-b-[0.8vw] border-b-transparent
+    border-l-[0.8vw] border-l-red-600 "></div>
   )
 }
 
 export const TransparentFlag = ()=>(
-  <div className="size-0 border-t-[0.5vw] border-t-transparent border-b-[0.5vw] border-b-transparent
-    border-l-[0.5vw] border-l-[#f6aba8de]"></div>
+  <div className="size-0 border-t-[0.8vw] border-t-transparent border-b-[0.8vw] border-b-transparent
+    border-l-[0.8vw] border-l-[#f6aba8de]"></div>
 )
   
 export const isActiveCell = (cell:CellType): boolean =>

@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import EmptyCell from "../components/header/grid/EmptyCell";
-import type { EmptyCellProps } from "../interfaces";
+import EmptyCell from "../src/components/header/grid/EmptyCell";
+import type { EmptyCellProps } from "../src/interfaces";
 
 const meta: Meta<typeof EmptyCell> = {
   component: EmptyCell,

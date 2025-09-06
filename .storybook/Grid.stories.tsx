@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import type {GridProps } from "../interfaces";
-import { Grid } from "../components/Grid";
+import type {GridProps } from "../src/interfaces";
+import { Grid } from "../src/components/Grid";
 
 
 const meta: Meta<typeof Grid> = {

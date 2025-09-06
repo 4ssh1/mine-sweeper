@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import Cell from "../components/Cell";
-import type { CellProps } from "../interfaces";
-import { CellState } from "../helpers/Board";
+import Cell from "../src/components/Cell";
+import type { CellProps } from "../src/interfaces";
+import { CellState } from "../src/helpers/Board";
 
 const meta: Meta<typeof Cell> = {
   component: Cell,
