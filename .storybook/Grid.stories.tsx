@@ -1,5 +1,5 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import type {GridProps } from "../src/interfaces";
+import type {CoordType, GridProps } from "../src/interfaces";
 import { Grid } from "../src/components/Grid";
 
 
@@ -28,7 +28,7 @@ gridEx.args = {
         [0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 9, 1],                
         [0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 9, 1],                
     ],
-    onClick: (coords) => console.log("Clicked:", coords),
-    onContextMenu: (coords) => console.log("Right-clicked:", coords),
+    onClick: (coords:CoordType) => console.log("Clicked:", coords),
+    onContextMenu: (coords: CoordType) => console.log("Right-clicked:", coords),
 }
 

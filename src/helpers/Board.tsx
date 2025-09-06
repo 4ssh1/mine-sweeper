@@ -43,7 +43,7 @@ export const fieldGenerator = (size: number, probability: number): FieldType =>{
 function BombFrame({ children, onContextMenu, "data-testid": testId }: BombFrameProps) {
   return (
     <div
-      className="flex items-center justify-center w-8 h-8 bg-[#ef1111] border-2 border-gray-400"
+      className="flex items-center justify-center size-8 bg-[#ef1111] border-2 border-gray-300"
       onContextMenu={onContextMenu}
       data-testid={testId}
     >
@@ -56,7 +56,7 @@ export default BombFrame;
 
 export const Bomb = ()=>{
   return (
-    <div className="rounded-full size-[1.3vw] bg-[#333] flex items-center justify-center "></div>
+    <div className="rounded-full size-[1.3vw] bg-[#333]"></div>
   )
 }
 

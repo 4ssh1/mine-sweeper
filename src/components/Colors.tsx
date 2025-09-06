@@ -2,7 +2,7 @@ import type { CellType } from "../interfaces"
 
 const transparent = 'rgba(0,0,0,0)'
 
-export const colors: {[key in CellType]: string } = { //google why
+export const colors: {[key in CellType]: string } = { 
     0: '#000',
     1: '#2a48ec',
     2: '#2bb13d',
