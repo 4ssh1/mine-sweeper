@@ -1,3 +1,4 @@
+import { useState } from "react"
 import useMouseDown from "../../hooks/useMouseDown"
 
 function RedBox({content}:{content: string | number}){
@@ -9,15 +10,21 @@ function RedBox({content}:{content: string | number}){
 }
 
 function SelectBox(){
-  const options = ["begineer", "intermediate", "expert"]
+  const options = ["Begineer", "Intermediate", "Expert"]
+  const [index, setIndex] = useState<number>(0)
+
+  const onSelect = (ind:number)=> {
+    const newIndex = (ind + 1) % 3
+    setIndex(newIndex)
+  }
+
+  const level = options[index]
+
   return(
-    <div className="border-[1px] rounded-lg text-center py-1 px-2">
-      <select name="" id="" className="outline-none border-0">
-        {options.map((option, i)=>(
-          <option value={option} key={i}>{option}</option>
-        ))}
-      </select>
-    </div>
+    <p className="border-[1px] border-pink-950 text-cyan-800 font-bold rounded-lg text-center py-1 px-2 w-30 cursor-pointer"
+    onClick={()=> onSelect(index)}>
+      {level}
+    </p>
   )
 }
 

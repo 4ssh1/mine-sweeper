@@ -1,13 +1,13 @@
 import Info from "./components/header/Info"
+import StaticGame from "./components/game/StaticGame"
 
 function App() {
 
   return (
     <>
-      <div className="flex h-screen justify-center items-center">
-        <div>
+      <div className="flex flex-col h-screen justify-center items-center">
           <Info />
-        </div>
+          <StaticGame />
       </div>
     </>
   )
