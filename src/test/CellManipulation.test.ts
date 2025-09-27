@@ -225,6 +225,8 @@ describe("Open Cell action", ()=>{
                 [hidden, hidden, hidden, hidden, hidden],
                 [hidden, hidden, hidden, hidden, hidden],
                 [hidden, hidden, hidden, hidden, hidden],
+                [hidden, hidden, hidden, hidden, hidden],
+                [hidden, hidden, hidden, hidden, hidden],
             ],
             [
                 [9, 9, 1, 1, 2],

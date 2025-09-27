@@ -38,6 +38,9 @@ export const openCell = (coords: CoordType, playerField: FieldType, field: Field
     const {bomb, empty, hidden} = CellState
     const [y, x] = coords
     const gameCell = field[y][x]
+
+    if (playerField[y][x] !== hidden) return playerField;
+
     if(gameCell === bomb){
         throw new Error("Game Over")
     }
@@ -58,7 +61,7 @@ export const openCell = (coords: CoordType, playerField: FieldType, field: Field
                     playerField = openCell(coords, playerField, field);
                 }
 
-                if(playerCell < bomb){
+                if(gameCell < bomb){
                     playerField[y][x] = gameCell;
                 }
             }
