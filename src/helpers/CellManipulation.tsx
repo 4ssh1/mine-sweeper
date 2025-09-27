@@ -1,4 +1,5 @@
 import type { FieldType, CoordType, CellType } from "../interfaces";
+import { CellState } from "./Board";
 
 export const getNeighbours = ([y, x]: CoordType) : Record<string, [number, number]>=>(
     {
@@ -33,3 +34,36 @@ export const incrementNeighbours = (coords: CoordType, field: FieldType): FieldT
     return field
 }
 
+export const openCell = (coords: CoordType, playerField: FieldType, field: FieldType): FieldType=>{
+    const {bomb, empty, hidden} = CellState
+    const [y, x] = coords
+    const gameCell = field[y][x]
+    if(gameCell === bomb){
+        throw new Error("Game Over")
+    }
+
+    if(gameCell === empty){
+        playerField[y][x] = gameCell
+
+        const neighbours = getNeighbours(coords);
+
+        for(const coords of Object.values(neighbours)){
+            if(isIteminField(coords, field)){
+                const [y, x] = coords;
+
+                const gameCell = field[y][x];
+                const playerCell = playerField[y][x];
+                
+                if(gameCell === empty && playerCell === hidden){
+                    playerField = openCell(coords, playerField, field);
+                }
+
+                if(playerCell < bomb){
+                    playerField[y][x] = gameCell;
+                }
+            }
+        }
+    }
+    playerField[y][x] = gameCell
+    return playerField
+}

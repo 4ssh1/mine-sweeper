@@ -1,8 +1,8 @@
 import { CellState} from "../helpers/Board";
-import { getNeighbours, incrementNeighbours, isIteminField } from "../helpers/CellManipulation";
+import { getNeighbours, incrementNeighbours, isIteminField, openCell } from "../helpers/CellManipulation";
 import type { FieldType } from "../interfaces";
 
-const {empty, bomb} = CellState
+const {empty, bomb, hidden} = CellState
 
 describe('Check increment neighbours', ()=>{
     describe('simple cases', ()=>{
@@ -143,6 +143,107 @@ describe("check if item is in field", ()=>{
             expect(isIteminField([2, 4], field)).toBe(true)
         }) 
     })
+})
+
+describe("Open Cell action", ()=>{
+    describe('Simple case', () => {
+      it("open cell with bomb", ()=>{
+        expect(()=>{
+            openCell([1,1], 
+                [
+                    [hidden, hidden],
+                    [hidden, hidden]
+                ],
+                [
+                    [1, 1],
+                    [1, bomb]
+                ]
+        )}).toThrow("Game Over")
+      })
+    })
+
+    describe("Cell with number", ()=>{
+        it('Open Cell with  1 bomb', ()=>{
+            const playerField = openCell([1,1], [
+                [hidden, hidden, hidden],
+                [hidden, hidden, hidden],
+                [hidden, hidden, hidden]
+            ],
+           [ 
+            [1, 1, 0],
+            [9, 1, 0],
+            [1, 1, 0],
+        ]
+        )
+        expect(playerField).toStrictEqual([
+            [hidden, hidden, hidden],
+            [hidden, 1, hidden],
+            [hidden, hidden, hidden]
+        ])}) 
+
+        it('Open Cell with  3 bomb', ()=>{
+            const playerField = openCell([1,1], [
+                [hidden, hidden, hidden],
+                [hidden, hidden, hidden],
+                [hidden, hidden, hidden]
+            ],
+           [ 
+            [9, 1, 0],
+            [9, 3, 0],
+            [9, 1, 0],
+        ]
+        )
+        expect(playerField).toStrictEqual([
+            [hidden, hidden, hidden],
+            [hidden, 3, hidden],
+            [hidden, hidden, hidden]
+        ])}) 
+    })
+
+    describe("Open Empty Cell", ()=>{
+        it("open empty cell, simple 3 x 3 case", ()=>{
+            const playerField = openCell([1,2], [
+                [hidden, hidden, hidden],
+                [hidden, hidden, hidden],
+                [hidden, hidden, hidden],
+            ],
+            [
+                [1, 1, 0],
+                [9, 1, 0],
+                [1, 1, 0],
+            ]
+            )
+            expect(playerField).toStrictEqual([
+                [hidden, 1, 0],
+                [hidden, 1, 0],
+                [hidden, 1, 0]
+            ])
+        })
+
+        it("open empty cell, simple 5 x 5 case", ()=>{
+            const playerField = openCell([2,2], [
+                [hidden, hidden, hidden, hidden, hidden],
+                [hidden, hidden, hidden, hidden, hidden],
+                [hidden, hidden, hidden, hidden, hidden],
+            ],
+            [
+                [9, 9, 1, 1, 2],
+                [9, 3, 1, 0, 0],
+                [1, 1, 0, 1, 1],
+                [1, 0, 0, 1, 9],
+                [2, 1, 0, 1, 0]
+            ]
+            )
+            expect(playerField).toStrictEqual([
+                [hidden, hidden, 1, 1, 2],
+                [hidden, 3, 1, 0, 0],
+                [1, 1, 0, 1, 1],
+                [1, 0, 0, 1, hidden],
+                [2, 1, 0, 1, hidden]
+            ])
+        })
+    })
+    
 })
 
 
