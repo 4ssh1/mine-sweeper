@@ -15,6 +15,7 @@ export type FieldType = CellType [][];
 export type CoordType = [number, number];
 export type Props = React.HTMLAttributes<HTMLDivElement>;
 
+
 export interface CellProps {
     children?: CellType;
     coords: CoordType;
