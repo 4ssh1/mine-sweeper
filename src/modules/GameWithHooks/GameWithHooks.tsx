@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import Info from "../../components/header/Info";
 import StaticGame from "../../components/game/StaticGame";
-import GameOver from "../../components/GameOver";
 
 export const GameWithHooks: FC = ()=> {
     return (
