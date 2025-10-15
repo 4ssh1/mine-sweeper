@@ -44,13 +44,13 @@ const onReset = ()=>{
   
 }
 
-function Info() {
+function Info({feature= "flag:", firstAction= "alt", secondAction= "click"}: {feature?: string, firstAction?:string,secondAction?:string }) {
   return (
       <div>
         <div className="pb-5">
           <h2 className="font-bold text-2xl pb-2 text-center">minesweeper</h2>
-          <p className="font-semibold text-center">flag: <span className="text-red-500">alt</span> + 
-          <span className="text-purple-500"> click</span> </p>
+          <p className="font-semibold text-center">{feature} <span className="text-red-500">{firstAction}</span> + 
+          <span className="text-purple-500"> {secondAction}</span> </p>
         </div>
         <div className="flex gap-2">
           <RedBox content={1200}/>
