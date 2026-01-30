@@ -1,5 +1,9 @@
 import { useState } from "react"
 import useMouseDown from "../../hooks/useMouseDown"
+import { GameSettings } from "../../modules/GameSettings"
+import { CellState, emptyFieldGenerator, fieldGenerator } from "../../helpers/Board"
+import type { CoordType, FieldType } from "../../interfaces"
+import { openCell } from "../../helpers/CellManipulation"
 
 function RedBox({content}:{content: string | number}){
   return(
@@ -9,9 +13,9 @@ function RedBox({content}:{content: string | number}){
   )
 }
 
-function SelectBox(){
+function SelectBox({indexProp=0}:{indexProp?:number}){
   const options = ["Begineer", "Intermediate", "Expert"]
-  const [index, setIndex] = useState<number>(0)
+  const [index, setIndex] = useState<number>(indexProp)
 
   const onSelect = (ind:number)=> {
     const newIndex = (ind + 1) % 3
@@ -44,7 +48,20 @@ const onReset = ()=>{
   
 }
 
-function Info({feature= "flag:", firstAction= "alt", secondAction= "click"}: {feature?: string, firstAction?:string,secondAction?:string }) {
+const data = ["Begineer", "Intermediate", "Expert"]
+
+function MineSweeper({feature= "flag:", firstAction= "alt", secondAction= "click"}: {feature?: string, firstAction?:string,secondAction?:string }) {
+  const [level, setLevel] = useState<number>(0)
+  const [size, bombs] = GameSettings[data[level] as "Begineer" | "Intermediate" | "Expert"]
+
+  const [playerField, setPlayerField] = useState<FieldType>(emptyFieldGenerator(size, CellState.hidden))
+
+  const gameField = fieldGenerator(size, bombs / (size * size))
+
+  const onClickCell = (coords: CoordType)=> {
+    openCell(coords, playerField, gameField)
+  }
+
   return (
       <div>
         <div className="pb-5">
@@ -54,7 +71,7 @@ function Info({feature= "flag:", firstAction= "alt", secondAction= "click"}: {fe
         </div>
         <div className="flex gap-2">
           <RedBox content={1200}/>
-          <SelectBox />
+          <SelectBox indexProp={level} />
           <Reset />
           <RedBox content={56}/>
         </div>
@@ -63,4 +80,4 @@ function Info({feature= "flag:", firstAction= "alt", secondAction= "click"}: {fe
 }
 
 
-export default Info
+export default MineSweeper
