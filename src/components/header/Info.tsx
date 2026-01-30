@@ -4,53 +4,55 @@ import { GameSettings } from "../../modules/GameSettings"
 import { CellState, emptyFieldGenerator, fieldGenerator } from "../../helpers/Board"
 import type { CoordType, FieldType } from "../../interfaces"
 import { openCell } from "../../helpers/CellManipulation"
+import { Grid } from "../Grid"
+import Cell from "../Cell"
 
-function RedBox({content}:{content: string | number}){
-  return(
+function RedBox({ content }: { content: string | number }) {
+  return (
     <div className="h-8 w-14 bg-black border-[2.4px] border-red-500 flex items-center justify-center">
-        <span className="text-red-500 text-[15px] font-bold">{content}</span>   
+      <span className="text-red-500 text-[15px] font-bold">{content}</span>
     </div>
   )
 }
 
-function SelectBox({indexProp=0}:{indexProp?:number}){
+function SelectBox({ indexProp = 0 }: { indexProp?: number }) {
   const options = ["Begineer", "Intermediate", "Expert"]
   const [index, setIndex] = useState<number>(indexProp)
 
-  const onSelect = (ind:number)=> {
+  const onSelect = (ind: number) => {
     const newIndex = (ind + 1) % 3
     setIndex(newIndex)
   }
 
   const level = options[index]
 
-  return(
+  return (
     <p className="border-[1px] border-pink-950 text-cyan-800 font-bold rounded-lg text-center py-1 px-2 w-30 cursor-pointer"
-    onClick={()=> onSelect(index)}>
+      onClick={() => onSelect(index)}>
       {level}
     </p>
   )
 }
 
-function Reset(){
+function Reset() {
   const [mouseDown, onMouseDown, onMouseUp] = useMouseDown()
 
   return (
     <button onMouseDown={onMouseDown} onMouseUp={onMouseUp} onClick={onReset}
-    className="border-[1px] rounded-xl py-1 px-2 hover:opacity-80 ease-out" type="button">
-      Reset { mouseDown ? " 😮" : " 😁"}
+      className="border-[1px] rounded-xl py-1 px-2 hover:opacity-80 ease-out" type="button">
+      Reset {mouseDown ? " 😮" : " 😁"}
     </button>
   )
 
 }
 
-const onReset = ()=>{
-  
+const onReset = () => {
+
 }
 
 const data = ["Begineer", "Intermediate", "Expert"]
 
-function MineSweeper({feature= "flag:", firstAction= "alt", secondAction= "click"}: {feature?: string, firstAction?:string,secondAction?:string }) {
+function MineSweeper({ feature = "flag:", firstAction = "alt", secondAction = "click" }: { feature?: string, firstAction?: string, secondAction?: string }) {
   const [level, setLevel] = useState<number>(0)
   const [size, bombs] = GameSettings[data[level] as "Begineer" | "Intermediate" | "Expert"]
 
@@ -58,24 +60,41 @@ function MineSweeper({feature= "flag:", firstAction= "alt", secondAction= "click
 
   const gameField = fieldGenerator(size, bombs / (size * size))
 
-  const onClickCell = (coords: CoordType)=> {
-    openCell(coords, playerField, gameField)
+  const onClick = (coords: CoordType) => {
+    const newPlayerField = openCell(coords, playerField, gameField)
+    setPlayerField([...newPlayerField])
   }
 
   return (
-      <div>
-        <div className="pb-5">
-          <h2 className="font-bold text-2xl pb-2 text-center">minesweeper</h2>
-          <p className="font-semibold text-center">{feature} <span className="text-red-500">{firstAction}</span> + 
+    <div>
+      <div className="pb-5">
+        <h2 className="font-bold text-2xl pb-2 text-center">minesweeper</h2>
+        <p className="font-semibold text-center">{feature} <span className="text-red-500">{firstAction}</span> +
           <span className="text-purple-500"> {secondAction}</span> </p>
-        </div>
-        <div className="flex gap-2">
-          <RedBox content={1200}/>
-          <SelectBox indexProp={level} />
-          <Reset />
-          <RedBox content={56}/>
-        </div>
       </div>
+      <div className="flex gap-2">
+        <RedBox content={1200} />
+        <SelectBox indexProp={level} />
+        <Reset />
+        <RedBox content={56} />
+      </div>
+        <div style={{ display: 'inline-block', marginTop: 16 }}>
+          {playerField.map((row, rowIdx) => (
+            <div key={rowIdx} style={{ display: 'flex' }}>
+              {row.map((cell, colIdx) => (
+                <Cell
+                  key={colIdx}
+                  coords={[rowIdx, colIdx]}
+                  onClick={onClick}
+                  onContextMenu={() => null}
+                >
+                  {cell}
+                </Cell>
+              ))}
+            </div>
+          ))}
+        </div>
+    </div>
   )
 }
 
