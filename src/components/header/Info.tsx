@@ -4,7 +4,6 @@ import { GameSettings } from "../../modules/GameSettings"
 import { CellState, emptyFieldGenerator, fieldGenerator } from "../../helpers/Board"
 import type { CoordType, FieldType } from "../../interfaces"
 import { openCell } from "../../helpers/CellManipulation"
-import { Grid } from "../Grid"
 import Cell from "../Cell"
 
 function RedBox({ content }: { content: string | number }) {
@@ -66,7 +65,7 @@ function MineSweeper({ feature = "flag:", firstAction = "alt", secondAction = "c
   }
 
   return (
-    <div>
+    <div className="">
       <div className="pb-5">
         <h2 className="font-bold text-2xl pb-2 text-center">minesweeper</h2>
         <p className="font-semibold text-center">{feature} <span className="text-red-500">{firstAction}</span> +
@@ -78,7 +77,7 @@ function MineSweeper({ feature = "flag:", firstAction = "alt", secondAction = "c
         <Reset />
         <RedBox content={56} />
       </div>
-        <div style={{ display: 'inline-block', marginTop: 16 }}>
+        <div style={{ display: 'inline-flex', marginTop: 16 }} className="flex-col justify-center items-center w-full">
           {playerField.map((row, rowIdx) => (
             <div key={rowIdx} style={{ display: 'flex' }}>
               {row.map((cell, colIdx) => (
